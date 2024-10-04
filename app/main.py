@@ -7,6 +7,7 @@ import asyncio
 async def startup_event():
     asyncio.create_task(match_request_consumer.consume_from_queue())
     asyncio.create_task(user_crud_consumer.consume_user_crud_request_queue())
+#test
 
 # 라우터 등록
 app.include_router(users.router)
