@@ -8,7 +8,7 @@ async def consume_from_queue():
     connection = await aio_pika.connect_robust(RABBITMQ_URL)
     async with connection:
         channel = await connection.channel()
-        queue = await channel.declare_queue('match-request', durable=True, arguments={'x-message-ttl': 60000})
+        queue = await channel.declare_queue('match-request', durable=True)
 
         async for message in queue:
             async with message.process():
