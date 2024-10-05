@@ -4,8 +4,9 @@ import json
 import aiohttp
 from app.config import RABBITMQ_URL
 import pandas as pd
+from app.config import CSV_FILE_PATH
 
-ticket_list = pd.read_csv('C:/Users/서진호/Desktop/fc/예매번호(t번호 내역).csv')
+ticket_list = pd.read_csv(CSV_FILE_PATH)
 
 async def consume_reserve_auth_queue():
     connection = await aio_pika.connect_robust(RABBITMQ_URL)
@@ -31,7 +32,7 @@ async def consume_reserve_auth_queue():
                             ticket_list.loc[ticket_list['대표티켓번호'] == reserve_number, '총매수'] -= 1
                             print(f"Ticket {reserve_number} authenticated, remaining tickets: {ticket_row['총매수'] - 1}")
 
-                            ticket_list.to_csv('C:/Users/서진호/Desktop/fc/예매번호(t번호 내역).csv', index=False)
+                            ticket_list.to_csv(CSV_FILE_PATH, index=False)
 
                             response_data = {
                                 "authSuccess": True
