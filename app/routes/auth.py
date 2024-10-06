@@ -11,8 +11,7 @@ ticket_list = pd.read_csv(CSV_FILE_PATH)
 
 router = APIRouter()
 
-async def check_reserve_number(request: Request):
-    data = await request.json()
+async def check_reserve_number(data: dict):
     
     # props가 데이터에 포함되어 있는지 확인
     props = data.get('props')
@@ -21,7 +20,7 @@ async def check_reserve_number(request: Request):
     if not props or not props.get('reply_to') or not props.get('correlation_id'):
         return JSONResponse(content={"error": "Missing properties (reply_to or correlation_id)"}, status_code=400)
     
-    reserve_number = data.get("reserveNumber")
+    reserve_number = data["reserveNumber"]
     
     if reserve_number in ticket_list['대표티켓번호'].values:
         response_content = { "authSuccess": True }
