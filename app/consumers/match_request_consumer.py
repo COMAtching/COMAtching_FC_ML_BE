@@ -14,6 +14,7 @@ async def consume_from_queue():
             async with message.process():
                 try:
                     print(f"Received message: {message.body}")
+                    print(f"Message properties: {message.properties}")
                     props = message.properties
 
                     message_data = json.loads(message.body)

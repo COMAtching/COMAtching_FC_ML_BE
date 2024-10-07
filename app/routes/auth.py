@@ -50,7 +50,7 @@ async def check_reserve_number(data: dict):
                 "teamSide": "NONE"
             }
             response_content.update(data)
-            print(f"Response: {response_content}")
+            
             await send_to_queue(None, props, response_content)
             return JSONResponse(content=response_content, status_code=400)
         
