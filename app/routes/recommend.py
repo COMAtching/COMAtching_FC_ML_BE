@@ -27,7 +27,7 @@ async def recommend_user(request: Request):
         return JSONResponse(content={"error": "Missing properties (reply_to or correlation_id)"}, status_code=400)
     
     # 필수 필드 확인
-    required_fields = ["matcherUuid", "myGender", "myAge", "myPropensity", "genderOption", "teamOption"]
+    required_fields = ["matcherUuid", "myGender", "myAge", "myPropensity", "myPropensity1", "myPropensity2", "myPropensity3", "myPropensity4", "myPropensity5", "myPropensity6", "genderOption", "teamOption"]
     for field in required_fields:
         if field not in data:
             response_content = {"stateCode": "CRUD-001", "message": "Field Missing"}
@@ -64,16 +64,14 @@ async def recommend_user(request: Request):
         df.at[1][0] = data['matcherUuid']
         df.at[1][1] = data['myGender']
         df.at[1][2] = data['myAge']
-        df.at[1][3] = data['hobbyOption']
-        df.at[1][4] = data['myPropensity']
-        df.at[1][5] = data['myPropensity1']
-        df.at[1][6] = data['myPropensity2']
-        df.at[1][7] = data['myPropensity3']
-        df.at[1][8] = data['myPropensity4']
-        df.at[1][9] = data['myPropensity5']
-        df.at[1][10] = data['myPropensity6']
-        df.at[1][11] = data['myPropensity6']
-        df.at[1][12] = data['genderOption']
+        df.at[1][3] = data['myPropensity']
+        df.at[1][4] = data['myPropensity1']
+        df.at[1][5] = data['myPropensity2']
+        df.at[1][6] = data['myPropensity3']
+        df.at[1][7] = data['myPropensity4']
+        df.at[1][8] = data['myPropensity5']
+        df.at[1][9] = data['myPropensity6']
+        df.at[1][10] = data['genderOption']
 
         # 수정된 내용을 CSV 파일에 저장
         df.to_csv(csv_file_path, index=False)
