@@ -4,11 +4,11 @@ import os
 import csv
 import json
 import pandas as pd
-from app.config import CSV_FILE_PATH
+from app.config import CSV_FILE_PATH_HOME, CSV_FILE_PATH_AWAY
 from app.utils.helpers import send_to_queue
 
-ticket_list = pd.read_csv(CSV_FILE_PATH)
-
+ticket_list_home = pd.read_csv(CSV_FILE_PATH_HOME)
+ticket_list_away = pd.read_csv(CSV_FILE_PATH_AWAY)
 router = APIRouter()
 
 async def check_reserve_number(data: dict):
