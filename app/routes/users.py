@@ -104,7 +104,7 @@ async def update_user(user: dict):
     if not props or not props.get('reply_to') or not props.get('correlation_id'):
         return JSONResponse(content={"error": "Missing properties (reply_to or correlation_id)"}, status_code=400)
     
-    required_fields = ["type", "uuid", "matcherUuid", "age", "gender", "propensity", "propensity1", "propensity2", "propensity3", "propensity4", "propensity5", "propensity6"]
+    required_fields = ["type", "uuid", "age", "gender", "propensity", "propensity1", "propensity2", "propensity3", "propensity4", "propensity5", "propensity6"]
     ## 에러 처리 예시
     for field in required_fields:
         if field not in user:
@@ -192,7 +192,7 @@ async def delete_user(user: dict):
         return JSONResponse(content={"error": "Missing properties (reply_to or correlation_id)"}, status_code=400)
     
     # 필수 필드 확인
-    required_fields = ["type", "uuid", "matcherUuid", "age", "gender", "propensity", "propensity1", "propensity2", "propensity3", "propensity4", "propensity5", "propensity6"]
+    required_fields = ["type", "uuid", "age", "gender", "propensity", "propensity1", "propensity2", "propensity3", "propensity4", "propensity5", "propensity6"]
     for field in required_fields:
         if field not in user:
             response_content = {"stateCode": "CRUD-001", "enemyUuid": user["uuid"]}
