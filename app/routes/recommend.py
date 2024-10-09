@@ -52,7 +52,7 @@ async def recommend_user(request: Request):
         df = pd.read_csv(csv_file_path, encoding='utf-8')
         
         if df.empty:
-            response_content = {"errorCode": "GEN-004", "errorMessage": "CSV file is empty"}
+            response_content = {"stateCode": "GEN-002", "message": "CSV file is empty"}
             await send_to_queue(None, props, response_content)
             return JSONResponse(content=response_content, status_code=404)
             
@@ -73,8 +73,9 @@ async def recommend_user(request: Request):
         df.to_csv(csv_file_path, index=False, encoding='utf-8')
 
     except Exception as e:
-        response_content = {"errorCode": "GEN-001", "errorMessage": "File open fail"}
+        response_content = {"stateCode": "GEN-003", "message": "File open fail"}
         await send_to_queue(None, props, response_content)
+        response_content.update({"details": str(e)})
         return JSONResponse(content=response_content, status_code=500)
 
     # ./new/run.py 파일 실행
@@ -82,9 +83,9 @@ async def recommend_user(request: Request):
         result = subprocess.run(['python', ml_file_path], capture_output=True, text=True)
         if result.returncode != 0:
             
-            response_content = {"error": "GEN-002", "message": "Error running model"}
-            print({"details": result.stderr})
+            response_content = {"stateCode": "GEN-004", "message": "Error running model"}
             await send_to_queue(None, props, response_content)
+            response_content.update({"details": str(e)})
             return JSONResponse(content=response_content, status_code=500)
 
         recommended_candidate = result.stdout.strip()
@@ -110,17 +111,19 @@ async def recommend_user(request: Request):
                 recommended_user = {}
 
         else:
-            response_content = {"errorCode": "GEN-002", "errorMessage": "assert fail"}
+            response_content = {"stateCode": "GEN-006", "message": "Model return error"}
             await send_to_queue(None, props, response_content)
+            response_content.update({"details": str(e)})
             return JSONResponse(content=response_content, status_code=500)
 
     except Exception as e:
-        response_content = {"errorCode": "GEN-002", "errorMessage": "assert fail"}
+        response_content = {"stateCode": "GEN-004", "message": "Error running model"}
         await send_to_queue(None, props, response_content)
+        response_content.update({"details": str(e)})
         return JSONResponse(content=response_content, status_code=500)
     
     # 추가
-    response_content = {"stateCode": "GEN-000", "stateMessage": "Success"}
+    response_content = {"stateCode": "GEN-000", "message": "Success"}
     # 수정
     response_content.update(recommended_user)
     await send_to_queue(None, props, response_content)
