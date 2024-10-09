@@ -19,7 +19,7 @@ async def check_reserve_number(data: dict):
     
     # 만약 props에 reply_to나 correlation_id가 없으면 오류 반환
     if not props or not props.get('reply_to') or not props.get('correlation_id'):
-        response_content = { "stateCode": "GEN-001", "authSuccess": False, "teamSide": "NONE" }
+        response_content = { "stateCode": "CRUD-001", "authSuccess": False, "teamSide": "NONE" }
         response_content.update(data)
         print(f"Response: {response_content}")
         await send_to_queue(None, props, response_content)
@@ -45,7 +45,7 @@ async def check_reserve_number(data: dict):
             # 티켓번호가 존재하지 않는 경우 오류 처리
             print(f"Error: Ticket number {reserve_number} not found.")
             response_content = {
-                "stateCode": "GEN-002",
+                "stateCode": "GEN-001",
                 "authSuccess": False,
                 "teamSide": "NONE"
             }

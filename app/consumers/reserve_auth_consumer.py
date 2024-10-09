@@ -17,12 +17,6 @@ async def consume_reserve_auth_queue():
                 try:
                     print(f"Received message: {message.body}")
                     props = message.properties
-                    test = dir(props)
-                    test1 = props.correlation_id
-        
-                    print(f"Message properties: {props}")
-                    print(f"Test: {test}")
-                    print(f"Test1: {test1}")
 
                     message_data = json.loads(message.body)
                     message_data["props"] = {
