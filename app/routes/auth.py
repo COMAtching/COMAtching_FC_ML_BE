@@ -45,7 +45,7 @@ async def check_reserve_number(data: dict):
             # 티켓번호가 존재하지 않는 경우 오류 처리
             print(f"Error: Ticket number {reserve_number} not found.")
             response_content = {
-                "stateCode": "GEN-001",
+                "stateCode": "CRUD-002",
                 "authSuccess": False,
                 "teamSide": "NONE"
             }
