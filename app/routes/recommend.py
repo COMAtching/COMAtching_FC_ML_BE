@@ -21,22 +21,22 @@ async def recommend_user(request: Request):
 
     # 만약 props에 reply_to나 correlation_id가 없으면 오류 반환
     if not props or not props.get('reply_to') or not props.get('correlation_id'):
-        response_content = {"stateCode": "CRUD-001", "message": "Field Missing"}
+        response_content = {"stateCode": "MTCH-001", "message": "Field Missing"}
         await send_to_queue(None, props, response_content)
         return JSONResponse(content={"error": "Missing properties (reply_to or correlation_id)"}, status_code=400)
-    
+
     # 필수 필드 확인
     required_fields = ["matcherUuid", "myGender", "myAge", "myPropensity", "myPropensity1", "myPropensity2", "myPropensity3", "myPropensity4", "myPropensity5", "myPropensity6", "genderOption", "teamOption"]
     for field in required_fields:
         if field not in data:
-            response_content = {"stateCode": "CRUD-001", "message": "Field Missing"}
+            response_content = {"stateCode": "MTCH-001", "message": "Field Missing"}
             await send_to_queue(None, props, response_content)
             return JSONResponse(content=response_content, status_code=400)
-    
-    
+
+
     users = []
     updated = False
-    
+
     if data['teamOption'] == 'HOME':
         csv_file_path = ML_CSV_FILE_PATH_HOME
         ml_file_path = ML_FILE_PATH_HOME
@@ -44,18 +44,18 @@ async def recommend_user(request: Request):
         csv_file_path = ML_CSV_FILE_PATH_AWAY
         ml_file_path = ML_FILE_PATH_AWAY
     else:
-        response_content = {"stateCode": "CRUD-002", "message": "Invalid TeamOption"}
+        response_content = {"stateCode": "MTCH-002", "message": "Invalid TeamOption"}
         await send_to_queue(None, props, response_content)
         return JSONResponse(content=response_content, status_code=400)
-    
+
     try:
         df = pd.read_csv(csv_file_path, encoding='utf-8')
-        
+
         if df.empty:
-            response_content = {"stateCode": "GEN-002", "message": "CSV file is empty"}
+            response_content = {"stateCode": "MTCH-003", "message": "CSV file is empty"}
             await send_to_queue(None, props, response_content)
             return JSONResponse(content=response_content, status_code=404)
-            
+
         # 데이터 업데이트 (두 번째 행에 데이터를 반영)
         df.iloc[0, 0] = data['matcherUuid']
         df.iloc[0, 1] = data['myGender']
@@ -73,7 +73,7 @@ async def recommend_user(request: Request):
         df.to_csv(csv_file_path, index=False, encoding='utf-8')
 
     except Exception as e:
-        response_content = {"stateCode": "GEN-003", "message": "File open fail"}
+        response_content = {"stateCode": "MTCH-004", "message": "File open fail"}
         await send_to_queue(None, props, response_content)
         response_content.update({"details": str(e)})
         return JSONResponse(content=response_content, status_code=500)
@@ -82,8 +82,8 @@ async def recommend_user(request: Request):
     try:
         result = subprocess.run(['python', ml_file_path], capture_output=True, text=True)
         if result.returncode != 0:
-            
-            response_content = {"stateCode": "GEN-004", "message": "Error running model"}
+
+            response_content = {"stateCode": "MTCH-005", "message": "Error running model"}
             await send_to_queue(None, props, response_content)
             response_content.update({"details": str(e)})
             return JSONResponse(content=response_content, status_code=500)
@@ -93,7 +93,7 @@ async def recommend_user(request: Request):
         if 'Top 1 Similar Person:' in recommended_candidate:
             start_index = recommended_candidate.find('Top 1 Similar Person:') + len('Top 1 Similar Person:')
             recommended_user_data = recommended_candidate[start_index:].strip()
-            
+
             lines = recommended_user_data.split('\n')
             user_info = {}
             for line in lines:
@@ -111,21 +111,21 @@ async def recommend_user(request: Request):
                 recommended_user = {}
 
         else:
-            response_content = {"stateCode": "GEN-006", "message": "Model return error"}
+            response_content = {"stateCode": "MTCH-006", "message": "Model return error"}
             await send_to_queue(None, props, response_content)
             response_content.update({"details": str(e)})
             return JSONResponse(content=response_content, status_code=500)
 
     except Exception as e:
-        response_content = {"stateCode": "GEN-004", "message": "Error running model"}
+        response_content = {"stateCode": "MTCH-005", "message": "Error running model"}
         await send_to_queue(None, props, response_content)
         response_content.update({"details": str(e)})
         return JSONResponse(content=response_content, status_code=500)
-    
+
     # 추가
-    response_content = {"stateCode": "GEN-000", "message": "Success"}
+    response_content = {"stateCode": "MTCH-000", "message": "Success"}
     # 수정
     response_content.update(recommended_user)
     await send_to_queue(None, props, response_content)
-    
+
     return JSONResponse(content=response_content, status_code=200)
