@@ -82,6 +82,7 @@ async def recommend_user(request: Request):
     try:
         result = subprocess.run(['python', ml_file_path], capture_output=True, text=True)
         if result.returncode != 0:
+            
             response_content = {"stateCode": "GEN-004", "message": "Error running model"}
             await send_to_queue(None, props, response_content)
             response_content.update({"details": str(e)})
