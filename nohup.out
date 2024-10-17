@@ -1,0 +1,197 @@
+INFO:     Will watch for changes in these directories: ['/home/ads_lj/comatching/project']
+INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+INFO:     Started reloader process [339243] using StatReload
+INFO:     Started server process [339245]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Received message: b'{"f":"a"}'
+Error processing message: 'reserveNumber'
+Response: {'authSuccess': False, 'error': "'reserveNumber'"}
+Received message: b'{"f":"a"}'
+Error processing message: 'reserveNumber'
+Response: {'authSuccess': False, 'error': "'reserveNumber'"}
+Received message: b'{"f":"a"}'
+Message properties: <Basic.Properties object at 0x7f8cd9bf1cc0>
+Sending message to queue: {'stateCode': 'MTCH-001', 'message': 'Field Missing'}
+Error sending message to queue: object of type 'NoneType' has no len()
+INFO:     127.0.0.1:38232 - "POST /recommend HTTP/1.1" 400 Bad Request
+Response from /recommend: 400, {'error': 'Missing properties (reply_to or correlation_id)'}
+Received message: b'{"reserveNumber":"T1000000012"}'
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAvM8AAAAAZxEceQ==.An7J4sH3O6Ckc06l/EM+dA==', 'correlation_id': '28'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAvM8AAAAAZxEceQ==.An7J4sH3O6Ckc06l/EM+dA=='
+Received message: b'{"reserveNumber":"T1000000012"}'
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAvOYAAAAAZxEceQ==.OJFcWxKUu5avaKfyv2qVpw==', 'correlation_id': '28'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAvOYAAAAAZxEceQ==.OJFcWxKUu5avaKfyv2qVpw=='
+Received message: b'{"reserveNumber":"T2569698541"}'
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'AWAY', 'reserveNumber': 'T2569698541', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAvgQAAAAAZxEceQ==.ERoc6AimiYsUql8nzm+XwQ==', 'correlation_id': '29'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAvgQAAAAAZxEceQ==.ERoc6AimiYsUql8nzm+XwQ=='
+Received message: b'{"type":"CREATE","uuid":"11ef8cb2-3e2f-c538-a500-b1abcea1239d","gender":"MALE","age":24,"propensity":"\xec\x97\xb4\xec\xa0\x95\xed\x98\x95","propensity1":11,"propensity2":8,"propensity3":6,"propensity4":9,"propensity5":4,"propensity6":10,"teamSide":"AWAY"}'
+Sending message to queue: {'stateCode': 'CRUD-000', 'message': 'CRUD Success'}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAvi0AAAAAZxEceQ==.2IDM0sOKVazVZi/Khiy3Kg=='
+{
+    "stateCode": "CRUD-000",
+    "message": "CRUD Success"
+}
+INFO:     127.0.0.1:49750 - "POST /users HTTP/1.1" 201 Created
+Response from POST http://localhost:8080/users: 201, {'stateCode': 'CRUD-000', 'message': 'CRUD Success'}
+Received message: b'{"matcherUuid":"11ef8cb2-3e2f-c538-a500-b1abcea1239d","myGender":"MALE","myAge":24,"myPropensity":"\xec\x97\xb4\xec\xa0\x95\xed\x98\x95","myPropensity1":11,"myPropensity2":8,"myPropensity3":6,"myPropensity4":9,"myPropensity5":4,"myPropensity6":10,"genderOption":"RANDOM","teamOption":"AWAY"}'
+Message properties: <Basic.Properties object at 0x7f8cd934d2c0>
+Sending message to queue: {'stateCode': 'MTCH-000', 'message': 'Success', 'enemyUuid': '889a2766-27c9-473c-9bc4-10b98c0b5a51'}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAvlUAAAAAZxEceQ==.mhXKZJku0SHyEEvU0kKTRQ=='
+INFO:     127.0.0.1:42610 - "POST /recommend HTTP/1.1" 200 OK
+Response from /recommend: 200, {'stateCode': 'MTCH-000', 'message': 'Success', 'enemyUuid': '889a2766-27c9-473c-9bc4-10b98c0b5a51'}
+Received message: b'{"type":"DELETE","uuid":"889a2766-27c9-473c-9bc4-10b98c0b5a51","gender":"RANDOM","age":29,"propensity":"\xec\x97\xb4\xec\xa0\x95\xed\x98\x95","propensity1":15,"propensity2":13,"propensity3":10,"propensity4":15,"propensity5":6,"propensity6":15,"teamSide":"AWAY"}'
+Sending message to queue: {'stateCode': 'CRUD-000', 'message': 'CRUD Success'}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAvi0AAAAAZxEceQ==.2IDM0sOKVazVZi/Khiy3Kg=='
+INFO:     127.0.0.1:42614 - "DELETE /users HTTP/1.1" 201 Created
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [339245]
+INFO:     Started server process [351951]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [351951]
+INFO:     Started server process [352217]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [352217]
+INFO:     Started server process [352456]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [352456]
+INFO:     Started server process [352710]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [352710]
+INFO:     Started server process [354565]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [354565]
+INFO:     Started server process [354829]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [354829]
+INFO:     Started server process [356481]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [356481]
+INFO:     Started server process [358940]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [358940]
+INFO:     Started server process [359404]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [359404]
+INFO:     Started server process [359866]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Received message: b'{"reserveNumber":"T2569702241"}'
+Response: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'AWAY', 'reserveNumber': 'T2569702241', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g==', 'correlation_id': '32'}}
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'AWAY', 'reserveNumber': 'T2569702241', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g==', 'correlation_id': '32'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g=='
+Received message: b'{"reserveNumber":"T1000000012"}'
+Response: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w==', 'correlation_id': '31'}}
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w==', 'correlation_id': '31'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w=='
+Received message: b'{"type":"CREATE","uuid":"11ef8cb3-57e5-629a-a500-bbcf83b35cca","gender":"MALE","age":22,"propensity":"\xec\x97\xb4\xec\xa0\x95\xed\x98\x95","propensity1":11,"propensity2":8,"propensity3":6,"propensity4":9,"propensity5":4,"propensity6":10,"teamSide":"AWAY"}'
+Sending message to queue: {'stateCode': 'CRUD-000', 'message': 'CRUD Success'}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwhkAAAAAZxEceQ==.uWASoJfIbtQn9ZU4gJpBpA=='
+{
+    "stateCode": "CRUD-000",
+    "message": "CRUD Success"
+}
+INFO:     127.0.0.1:35558 - "POST /users HTTP/1.1" 201 Created
+Response from POST http://localhost:8080/users: 201, {'stateCode': 'CRUD-000', 'message': 'CRUD Success'}
+Received message: b'{"reserveNumber":"T1000000012"}'
+Response: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w==', 'correlation_id': '32'}}
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w==', 'correlation_id': '32'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w=='
+Received message: b'{"reserveNumber":"T1000000012"}'
+Response: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g==', 'correlation_id': '33'}}
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g==', 'correlation_id': '33'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g=='
+Received message: b'{"reserveNumber":"T1000000012"}'
+Response: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w==', 'correlation_id': '33'}}
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w==', 'correlation_id': '33'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w=='
+Received message: b'{"reserveNumber":"T1000000012"}'
+Response: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g==', 'correlation_id': '34'}}
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g==', 'correlation_id': '34'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g=='
+Received message: b'{"reserveNumber":"T1000000012"}'
+Response: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w==', 'correlation_id': '34'}}
+Sending message to queue: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w==', 'correlation_id': '34'}}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwgIAAAAAZxEceQ==.j/oKvI5hH9tKCdRRGUNs/w=='
+Received message: b'{"reserveNumber":"T1000000012"}'
+Response: {'stateCode': 'AUTH-000', 'authSuccess': True, 'teamSide': 'HOME', 'reserveNumber': 'T1000000012', 'props': {'reply_to': 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAwesAAAAAZxEceQ==.DJ2yy4/u0fUw/nZVfM0k8g==', 'correlation_id': '35'}}
+WARNING:  StatReload detected changes in 'app/routes/auth.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [359866]
+INFO:     Started server process [360803]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Received message: b'{"N":"s"}'
+Message properties: <Basic.Properties object at 0x7f5669dffc20>
+Sending message to queue: {'stateCode': 'MTCH-001', 'message': 'Field Missing'}
+Error sending message to queue: object of type 'NoneType' has no len()
+INFO:     127.0.0.1:59930 - "POST /recommend HTTP/1.1" 400 Bad Request
+Response from /recommend: 400, {'error': 'Missing properties (reply_to or correlation_id)'}
+Received message: b'{"matcherUuid":"11ef8cb3-57e5-629a-a500-bbcf83b35cca","myGender":"MALE","myAge":22,"myPropensity":"\xec\x97\xb4\xec\xa0\x95\xed\x98\x95","myPropensity1":11,"myPropensity2":8,"myPropensity3":6,"myPropensity4":9,"myPropensity5":4,"myPropensity6":10,"genderOption":"FEMALE","teamOption":"AWAY"}'
+Message properties: <Basic.Properties object at 0x7f5669dffb80>
+Sending message to queue: {'stateCode': 'MTCH-000', 'message': 'Success', 'enemyUuid': 'c723007c-b77c-4748-a187-564b95da5a77'}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAw0MAAAAAZxEceQ==.6KSg06jx+Az888jwOQuqhg=='
+INFO:     127.0.0.1:40506 - "POST /recommend HTTP/1.1" 200 OK
+Response from /recommend: 200, {'stateCode': 'MTCH-000', 'message': 'Success', 'enemyUuid': 'c723007c-b77c-4748-a187-564b95da5a77'}
+Received message: b'{"type":"DELETE","uuid":"c723007c-b77c-4748-a187-564b95da5a77","gender":"RANDOM","age":25,"propensity":"\xec\x97\xb4\xec\xa0\x95\xed\x98\x95","propensity1":15,"propensity2":9,"propensity3":9,"propensity4":9,"propensity5":5,"propensity6":15,"teamSide":"AWAY"}'
+Sending message to queue: {'stateCode': 'CRUD-000', 'message': 'CRUD Success'}
+Message sent to queue 'amq.rabbitmq.reply-to.g1h2AA5yZXBseUA1MTMwNjAwNgAAw1oAAAAAZxEceQ==.mmp1wCosJQSWAHOj+XRHrQ=='
+INFO:     127.0.0.1:40510 - "DELETE /users HTTP/1.1" 201 Created
+WARNING:  StatReload detected changes in 'app/consumers/match_request_consumer.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [360803]
+INFO:     Started server process [364533]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
