@@ -21,7 +21,7 @@ async def check_reserve_number(data: dict):
     if not props or not props.get('reply_to') or not props.get('correlation_id'):
         response_content = { "stateCode": "CRUD-001", "authSuccess": False, "teamSide": "NONE" }
         response_content.update(data)
-        print(f"Response: {response_content}")
+
         await send_to_queue(None, props, response_content)
         return JSONResponse(content=response_content, status_code=400)
     
@@ -29,7 +29,7 @@ async def check_reserve_number(data: dict):
     if reserve_number in ticket_list_home['대표티켓번호'].values:
         response_content = { "stateCode": "GEN-000", "authSuccess": True, "teamSide": "HOME" }
         response_content.update(data)
-        print(f"Response: {response_content}")
+
         await send_to_queue(None, props, response_content)
         return JSONResponse(content=response_content, status_code=200)
 
@@ -37,7 +37,7 @@ async def check_reserve_number(data: dict):
         if reserve_number in ticket_list_away['대표티켓번호'].values:
             response_content = { "stateCode": "GEN-000", "authSuccess": True, "teamSide": "AWAY" }
             response_content.update(data)
-            print(f"Response: {response_content}")
+
             await send_to_queue(None, props, response_content)
             return JSONResponse(content=response_content, status_code=200)
         
